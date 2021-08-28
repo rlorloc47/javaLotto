@@ -27,7 +27,7 @@
 		<div class="landingMenuDiv" onclick="location.href='/raffle'">로또추첨</div>
 		<div class="landingMenuDiv">...</div>
 		<div class="landingMenuDiv">...</div>
-		<div class="landingMenuDiv">...</div>
+		<div class="landingMenuDiv" onclick="location.href='/qnaList'">문의 게시판</div>
 		<div class="clearDiv"></div>
 	</div>
 </body>
