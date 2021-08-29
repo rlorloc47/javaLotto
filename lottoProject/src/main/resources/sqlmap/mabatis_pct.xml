@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pct">
+	<select id="percentageSelectList" resultType="lotto.spring.project.lottoPercentage.PercentageVO">
+		<!-- SELECT history_key, b.history_idx, history_date, a.ballList, bonus_yn
+		FROM tb21_lotto_history b
+		     LEFT JOIN
+		     (SELECT tb21.history_idx,
+		             GROUP_CONCAT(
+		                ball_number ORDER BY
+		                               FIELD(bonus_yn, 'N', 'Y') DESC,
+		                               tb21.ball_number SEPARATOR ',') as ballList
+		      FROM tb21_lotto_history tb21
+		      GROUP BY tb21.history_idx) a
+		        ON b.history_idx = a.history_idx
+		      where b.del_flag = 'N'
+		      limit 0,10 -->
+		      
+		      SELECT history_key, b.history_idx, history_date, bonus_yn
+		FROM tb21_lotto_history b
+		      where b.del_flag = 'N'
+		      limit 0,10
+	</select>
+</mapper>
