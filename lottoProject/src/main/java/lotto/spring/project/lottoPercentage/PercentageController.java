@@ -18,6 +18,7 @@ public class PercentageController {
 	public String home(Locale locale, Model model) {
 		//21.08.26 문의게시판 리스트 페이지로 이동
 		List<PercentageVO> percentageList = this.percentageService.percentageSelectList();
+		System.out.println("나는야"+percentageList.get(0).getBallList());
 		model.addAttribute("percentageList", percentageList);
 		return ".tiles/percentage/percentageList";
 	}

@@ -6,9 +6,7 @@ public class PercentageVO {
 	private int history_key;
 	private int history_idx;
 	private String history_date;
-	private int ball_number;
-	private String bonus_yn;
-	private List<String> ballList;
+	private String ballList;
 	
 	
 	public int getHistory_key() {
@@ -29,22 +27,10 @@ public class PercentageVO {
 	public void setHistory_date(String history_date) {
 		this.history_date = history_date;
 	}
-	public int getBall_number() {
-		return ball_number;
-	}
-	public void setBall_number(int ball_number) {
-		this.ball_number = ball_number;
-	}
-	public String getBonus_yn() {
-		return bonus_yn;
-	}
-	public void setBonus_yn(String bonus_yn) {
-		this.bonus_yn = bonus_yn;
-	}
-	public List<String> getBallList() {
+	public String getBallList() {
 		return ballList;
 	}
-	public void setBallList(List<String> ballList) {
+	public void setBallList(String ballList) {
 		this.ballList = ballList;
 	}
 	
