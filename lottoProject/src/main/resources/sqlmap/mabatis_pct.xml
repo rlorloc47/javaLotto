@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pct">
-	<select id="percentageSelectList" resultType="lotto.spring.project.lottoPercentage.PercentageVO">
-		SELECT tb100.history_key,
-		       tb100.history_idx,
-		       tb100.history_date,
-		       b.ballList
-		FROM tb21_100_lotto_history tb100
-		     LEFT JOIN
-		     (SELECT GROUP_CONCAT(ball_number SEPARATOR ',') AS ballList,
-		             tb110.history_idx
-		      FROM tb21_110_lotto_ball tb110
-		      WHERE tb110.del_flag = 'N'
-		      GROUP BY tb110.history_idx) b
-		        ON b.history_idx = tb100.history_idx
-		WHERE tb100.del_flag = 'N'
-		ORDER BY tb100.history_idx DESC
-		LIMIT 0, 10
+	<select id="percentageSelectList" parameterType="percentageVo" resultType="percentageVo">
+		SELECT tb110.ball_number, count(*) as ballCount
+		FROM tb21_110_lotto_ball tb110
+		WHERE tb110.del_flag = 'N'
+		<if test="startYear!=null &amp;&amp; endYear !=null ">
+			<choose>
+				<when test ="startYear!='' &amp;&amp;  endYear !='' ">
+					AND tb110.history_idx BETWEEN ${startYear} AND ${endYear}
+				</when>
+			</choose>
+		</if>
+		GROUP BY tb110.ball_number
+		<choose>
+			<when test="orderBy == 'percentDesc'">order by count(*) desc</when>
+			<when test="orderBy == 'percentAsc'">order by count(*) asc</when>
+			<when test="orderBy == 'numberDesc'">order by tb110.ball_number desc</when>
+			<when test="orderBy == 'numberDesc'">order by tb110.ball_number desc</when>
+		</choose>
+		limit 0,5
 	</select>
 </mapper>

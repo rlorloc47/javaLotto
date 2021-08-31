@@ -11,7 +11,7 @@ public class PercentageDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<PercentageVO> percentageSelectList() {
-		return this.sqlSessionTemplate.selectList("pct.percentageSelectList");
+	public List<PercentageVO> percentageSelectList(PercentageVO percentageVO) {
+		return this.sqlSessionTemplate.selectList("pct.percentageSelectList",percentageVO);
 	}
 }

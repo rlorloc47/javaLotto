@@ -11,8 +11,8 @@ public class PercentageServiceImpl implements PercentageService {
 	PercentageDao PercentageDao;
 	
 	@Override
-	public List<PercentageVO> percentageSelectList() {
-		List<PercentageVO> percentageList = this.PercentageDao.percentageSelectList();
+	public List<PercentageVO> percentageSelectList(PercentageVO percentageVO) {
+		List<PercentageVO> percentageList = this.PercentageDao.percentageSelectList(percentageVO);
 		return percentageList;
 	}
 }
