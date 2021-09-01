@@ -27,6 +27,7 @@
 			    0: { side: 'top', label: '복권 차트'} // Top x-axis.
 			  }
 			},
+			colors: ['#a52714', '#097138'],
 			bar: { groupWidth: "90%" }
 		};
 		
