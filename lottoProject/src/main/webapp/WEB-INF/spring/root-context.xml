@@ -4,9 +4,9 @@
 	<!-- for mysql -->
 	<bean id="dataSourceSpied" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://221.154.250.171:9306/lotto_db?serverTimezone=UTC&amp;autoReconnect=true"/>
-		<property name="username" value="root"/>
-		<property name="password" value="raspberry"/>
+		<property name="url" value="jdbc:mysql://bettereun47.cafe24.com:3306/bettereun47?serverTimezone=UTC&amp;autoReconnect=true"/>
+		<property name="username" value="bettereun47"/>
+		<property name="password" value="P@ssw0rd"/>
 	</bean>
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>

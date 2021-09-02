@@ -5,6 +5,12 @@
 		SELECT tb110.ball_number, count(*) as ballCount
 		FROM tb21_110_lotto_ball tb110
 		WHERE tb110.del_flag = 'N'
+		<if test="searchNumber != null">
+			and tb110.ball_number IN (${searchNumber})
+		</if>
+		<if test='bonusYN == "Y"'>
+			and tb110.bonus_yn = "Y"
+		</if>
 		<if test="startYear!=null &amp;&amp; endYear !=null ">
 			<choose>
 				<when test ="startYear!='' &amp;&amp;  endYear !='' ">

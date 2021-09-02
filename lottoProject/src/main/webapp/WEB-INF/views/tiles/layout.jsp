@@ -6,14 +6,40 @@
 <head>
 <meta charset="utf-8">
 <title>title</title>
-<%-- <tiles:insertAttribute name="css" />
-<tiles:insertAttribute name="script" /> --%>
+<%-- <tiles:insertAttribute name="script" /> --%>
+<style type="text/css">
+.leftMenuDiv{
+	width: 20%;
+	min-width: 200px;
+	float: left;
+}
+.bodyDiv{
+	width: 80%;
+	float: right;
+}
+.searchDiv{
+	background-color: gray;
+}
+.leftMenuCell{
+	cursor: pointer;
+}
+.clearDiv{
+	float: none;
+	clear: both;
+}
+</style>
 </head>
 <body>
-    <tiles:insertAttribute name="header" />
+    <%-- <tiles:insertAttribute name="header" /> --%>
     <div id="content">
         <div class="page-contentinbe">
-          <tiles:insertAttribute name="body" />
+        	<div class="leftMenuDiv">
+        		<tiles:insertAttribute name="left" />
+        	</div>
+        	<div class="bodyDiv">
+        		<tiles:insertAttribute name="body" />
+        	</div>
+        	<div class="clearDiv"></div>
         </div>
     </div>
     <tiles:insertAttribute name="footer" />

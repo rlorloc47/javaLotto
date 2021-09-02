@@ -13,8 +13,15 @@ public class PercentageVO {
 	private String endYear;
 	private String orderBy;
 	private String searchNumber;
+	private String bonusYN;
 	
 	
+	public String getBonusYN() {
+		return bonusYN;
+	}
+	public void setBonusYN(String bonusYN) {
+		this.bonusYN = bonusYN;
+	}
 	public int getBallCount() {
 		return ballCount;
 	}

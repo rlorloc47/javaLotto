@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,20 +16,16 @@
 		var jsonData = ('${jsonArray}');
 		
 		var data = new google.visualization.arrayToDataTable($.parseJSON(jsonData));
-		 
+
 		var options = {
-			//title: 'Chess opening moves',
 			width: 900,
 			legend: { position: 'none' },
-			/* chart: { title: 'Chess opening moves',
-			         subtitle: 'popularity by percentage' }, */
 			bars: 'vertical', // Required for Material Bar Charts.
 			axes: {
 			  x: {
 			    0: { side: 'top', label: '복권 차트'} // Top x-axis.
 			  }
 			},
-			colors: ['#a52714', '#097138'],
 			bar: { groupWidth: "90%" }
 		};
 		
@@ -41,13 +39,17 @@
 <body>
 	<form action="/percentageList" class="searchDiv" method="get">
 		<div class="searchYear">
-			<input type="text" name="startYear" value="${startYear }">
-			<input type="text" name="endYear" value="${endYear }">
+			<input type="text" name="startYear" value="${percentageVO.startYear  }" placeholder="시작회차">
+			<input type="text" name="endYear" value="${percentageVO.endYear }" placeholder="종료회차">
 		</div>
 		<div class="searchNumber">
-			숫자기준
 			<c:forEach begin="1" end="45" step="1" var="a">
-				<input id="number_${a }" type="checkbox" name="searchNumber" value="${a}">
+				<input id="number_${a }" type="checkbox" name="searchNumber" value="${a}"
+					<c:if test="${percentageVO.searchNumber eq null }">checked="checked"</c:if>
+					<c:forEach items="${fn:split(percentageVO.searchNumber, ',') }" var="searchNumberCell">
+						<c:if test="${a eq searchNumberCell }">checked="checked"</c:if>
+					</c:forEach>
+				>
 					<label for="number_${a }">${a }</label>
 				<c:if test="${a%5 eq 0 }"><br/></c:if>
 			</c:forEach>
@@ -55,16 +57,21 @@
 		<div class="orderDiv">
 			<select name="orderBy">
 				<option value="">전체</option>
-				<option value="percentDesc">확률업</option>
-				<option value="percentAsc">확률다운</option>
-				<option value="numberDesc">숫자업</option>
-				<option value="numberAsc">숫자다운</option>
+				<option value="percentDesc" <c:if test="${percentageVO.orderBy eq 'percentDesc' }">selected</c:if>>확률업</option>
+				<option value="percentAsc" <c:if test="${percentageVO.orderBy eq 'percentAsc' }">selected</c:if>>확률다운</option>
+				<option value="numberDesc" <c:if test="${percentageVO.orderBy eq 'numberDesc' }">selected</c:if>>숫자업</option>
+				<option value="numberAsc" <c:if test="${percentageVO.orderBy eq 'numberAsc' }">selected</c:if>>숫자다운</option>
 			</select>
+		</div>
+		<div>
+			<input type="checkbox" name="bonusYN" value="Y" id="bonusYN"
+				<c:if test="${percentageVO.bonusYN eq 'Y' }">checked</c:if>
+			><label for="bonusYN">보너스 여부</label>
 		</div>
 		<div class="clearDiv"></div>
 		<button>검색</button>
 	</form>
-	<table>
+	<%-- <table>
 		<tr><td>번호</td></tr>
 		<c:forEach items="${percentageList }" var="a">
 			<tr>
@@ -72,7 +79,7 @@
 				<td>${a.ballCount }개</td>
 			</tr>
 		</c:forEach>
-	</table>
+	</table> --%>
 	<div id="chart_div"></div>
 </body>
 </html>

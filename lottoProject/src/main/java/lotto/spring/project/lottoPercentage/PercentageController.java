@@ -36,11 +36,11 @@ public class PercentageController {
 			jsonCell.add(percentageList.get(a).getBallCount());
 			jsonArray.add(jsonCell);
 		}
-		System.out.println("나는야"+jsonArray.get(0));
 		
+		model.addAttribute("percentageVO",percentageVO);
 		model.addAttribute("percentageList", percentageList);
 		model.addAttribute("jsonArray", jsonArray);
-		
+
 		return ".tiles/percentage/percentageList";
 	}
 }

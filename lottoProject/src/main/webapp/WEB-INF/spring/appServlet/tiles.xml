@@ -2,8 +2,8 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
     <definition name="default_main" templateExpression="/WEB-INF/views/tiles/layout.jsp">
-        <!-- <put-attribute name="css" expression="/WEB-INF/views/tiles/css.jsp" />
-        <put-attribute name="script" expression="/WEB-INF/views/tiles/script.jsp" /> -->
+        <!-- <put-attribute name="script" expression="/WEB-INF/views/tiles/script.jsp" /> -->
+        <put-attribute name="left" expression="/WEB-INF/views/tiles/left.jsp" />
         <put-attribute name="header" expression="/WEB-INF/views/tiles/header.jsp" />
         <put-attribute name="footer" expression="/WEB-INF/views/tiles/footer.jsp" />
     </definition>
