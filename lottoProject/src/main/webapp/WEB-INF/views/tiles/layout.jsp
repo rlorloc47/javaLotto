@@ -43,13 +43,33 @@
 }
 
 /* 21.09.03 페이지 처리 */
-.paginate{
-	width: 300px;
+.text_center{
+	width: 500px;
 	margin: 0 auto;
+}
+.text_center .page li{
+	float: left;
+    cursor: pointer;
+    font-size: 13px;
+    width: 26px;
+    height: 25px;
+	list-style:none;
+	padding-left:0px;
+}
+.text_center .page li>a {
+    color: #656565;
+}
+.text_center .page li:nth-child(1) {
+    padding: 0 0;
+    box-sizing: border-box;
+}
+.text_center .page li:nth-child(2) {
+    padding: 0 0;
+    box-sizing: border-box;
 }
 </style>
 <script type="text/javascript">
-	function goPage(pageNo) {
+	function movePage(pageNo) {
 		$(".searchDiv>input[name=pageNo]").val(pageNo);
 		$(".searchDiv").submit();
 	}

@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import lotto.spring.project.PaggingMakerUtil;
+
 @Controller
 public class LottoSearchController {
 	@Autowired
@@ -52,20 +54,22 @@ public class LottoSearchController {
 		//21.09.03 복권 조회 페이지로 이동
 		int totalCount = this.lottoSearchService.lottoSearchCount(lottoSearchVO);
 		
-		if (lottoSearchVO.getPageNo() == 0) lottoSearchVO.setPageNo(1); // 기본 값 설정
-		if (this.pageSize == 0) this.setPageSize(10); // 기본 값 설정
-		int finalPage = (totalCount + (pageSize - 1)) / pageSize; // 마지막 페이지
-		int startPage = ((lottoSearchVO.getPageNo() - 1) / 10) * 10 + 1; // 시작 페이지 (페이징 네비 기준)
-        int endPage = startPage + 10 - 1; // 끝 페이지 (페이징 네비 기준)
+		int countPerPage = 10;
+		int numPerPagging = 10;
+		String[] imgs = { null, null, null, null, null };
+
+		if (lottoSearchVO.getPageNo() < 1) {
+			lottoSearchVO.setPageNo(1);
+		}
+		//21.09.04 페이지번호는 동일하고 검색어가 바뀌었을 떄, totalCount보다 넘은 페이지일 경우 방지
+		//예시) 바뀐 검색어 때문에 totalCount는 5개인데 페이지번호는 2일경우 리스트에 표시되는 내용이 없음.
+		if (totalCount <= (lottoSearchVO.getPageNo()-1) * 10) {
+			lottoSearchVO.setPageNo(1);
+		}
+		lottoSearchVO.setLimitStartPage((lottoSearchVO.getPageNo() - 1) * countPerPage);
+		lottoSearchVO.setLimitEndPage(countPerPage);
+		model.addAttribute("pagingStr",(PaggingMakerUtil.indexList(imgs, lottoSearchVO.getPageNo(), countPerPage, numPerPagging, totalCount)));
         
-        model.addAttribute("finalPage", finalPage);
-        model.addAttribute("startPage", startPage);
-        model.addAttribute("endPage", endPage);
-        
-        lottoSearchVO.setLimitStartPage((lottoSearchVO.getPageNo()-1)*10);
-        lottoSearchVO.setLimitEndPage(this.pageSize);
-		
-		
 		List<LottoSearchVO> lottoSearchList = null;
 		lottoSearchList = this.lottoSearchService.lottoSearchList(lottoSearchVO);
 		

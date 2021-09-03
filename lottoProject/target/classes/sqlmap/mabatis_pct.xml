@@ -46,6 +46,7 @@
 		      GROUP BY tb110.history_idx) a
 		        ON tb100.history_idx = a.history_idx
 		WHERE tb100.del_flag = 'N'
+		<if test="searchKeyword != null">and tb100.history_idx like CONCAT('%',#{searchKeyword},'%')</if>
 		order by tb100.history_key desc
 		limit #{limitStartPage},#{limitEndPage}
 	</select>
@@ -61,6 +62,7 @@
 		      GROUP BY tb110.history_idx) a
 		        ON tb100.history_idx = a.history_idx
 		WHERE tb100.del_flag = 'N'
+		<if test="searchKeyword != null">and tb100.history_idx like CONCAT('%',#{searchKeyword},'%')</if>
 		order by tb100.history_key desc
 	</select>
 </mapper>

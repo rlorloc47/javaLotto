@@ -4,6 +4,7 @@
 <head>
 	<title>Home</title>
 </head>
+<meta http-equiv="refresh" content="0; url=/lottoSearchList"></meta>
 <body>
 <h1>
 	Hello world!  

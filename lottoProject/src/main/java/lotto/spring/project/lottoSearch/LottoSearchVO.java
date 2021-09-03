@@ -15,14 +15,28 @@ public class LottoSearchVO {
 	private String orderBy;
 	private String searchNumber;
 	private String bonusYN;
+	private String searchKeyword;
 	
 	//21.09.03 페이지 처리
 	private int limitStartPage;
 	private int limitEndPage;
 	private int pageNo;
+	private String PagingStr;
 	
 	
 	
+	public String getPagingStr() {
+		return PagingStr;
+	}
+	public void setPagingStr(String pagingStr) {
+		PagingStr = pagingStr;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
 	public int getLimitStartPage() {
 		return limitStartPage;
 	}

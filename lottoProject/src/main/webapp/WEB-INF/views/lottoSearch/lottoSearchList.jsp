@@ -36,6 +36,7 @@
 <body>
 	<form action="/lottoSearchList" class="searchDiv" method="get">
 		<input type="hidden" name="pageNo" value="${lottoSearchVO.pageNo }">
+		<input type="text" name="searchKeyword" placeholder="회차" value="${lottoSearchVO.searchKeyword }">
 		<div class="clearDiv"></div>
 		<button>검색</button>
 	</form>
@@ -78,7 +79,7 @@
 		</c:forEach>
 	</table>
 	
-	<div class="paginate">
+	<%-- <div class="paginate">
 	    <a href="javascript:goPage(1)" class="first">&#60;&#60;</a>
 	    <span>
 	        <c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
@@ -89,6 +90,10 @@
 	        </c:forEach>
 	    </span>
 	    <a href="javascript:goPage(${finalPage})" class="last">&#62;&#62;</a>
+	</div> --%>
+	<div class="text_center">
+		<ul class="page">${pagingStr }
+		</ul>
 	</div>
 </body>
 </html>
