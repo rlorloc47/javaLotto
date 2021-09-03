@@ -1,12 +1,13 @@
-package lotto.spring.project.lottoPercentage;
+package lotto.spring.project.lottoSearch;
 
-public class PercentageVO {
+public class LottoSearchVO {
 	private int history_key;
 	private int history_idx;
 	private String history_date;
 	private String ballList;
 	private int ball_number;
 	private int ballCount;
+	private int bonus_number;
 	
 	//21.08.31 검색 조건
 	private String startYear;
@@ -15,7 +16,37 @@ public class PercentageVO {
 	private String searchNumber;
 	private String bonusYN;
 	
+	//21.09.03 페이지 처리
+	private int limitStartPage;
+	private int limitEndPage;
+	private int pageNo;
 	
+	
+	
+	public int getLimitStartPage() {
+		return limitStartPage;
+	}
+	public void setLimitStartPage(int limitStartPage) {
+		this.limitStartPage = limitStartPage;
+	}
+	public int getLimitEndPage() {
+		return limitEndPage;
+	}
+	public void setLimitEndPage(int limitEndPage) {
+		this.limitEndPage = limitEndPage;
+	}
+	public int getPageNo() {
+		return pageNo;
+	}
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
+	public int getBonus_number() {
+		return bonus_number;
+	}
+	public void setBonus_number(int bonus_number) {
+		this.bonus_number = bonus_number;
+	}
 	public String getBonusYN() {
 		return bonusYN;
 	}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pct">
-	<select id="percentageSelectList" parameterType="percentageVo" resultType="percentageVo">
+	<select id="percentageSelectList" parameterType="lottoSearchVO" resultType="lottoSearchVO">
 		SELECT tb110.ball_number, count(*) as ballCount
 		FROM tb21_110_lotto_ball tb110
 		WHERE tb110.del_flag = 'N'
@@ -26,5 +26,41 @@
 			<when test="orderBy == 'numberDesc'">order by tb110.ball_number desc</when>
 		</choose>
 		limit 0,5
+	</select>
+	
+	<select id="lottoSearchList" parameterType="lottoSearchVO" resultType="lottoSearchVO">
+		SELECT tb100.history_idx,
+		       a.ballList,
+		       (SELECT c.ball_number
+		        FROM tb21_110_lotto_ball c
+		        WHERE     tb100.history_idx = c.history_idx
+		              AND c.bonus_yn = 'Y'
+		              AND c.del_flag = 'N')
+		          AS bonus_number
+		FROM tb21_100_lotto_history tb100
+		     LEFT JOIN
+		     (SELECT tb110.history_idx,
+		             group_concat(tb110.ball_number SEPARATOR ',') AS ballList
+		      FROM tb21_110_lotto_ball tb110
+		      WHERE tb110.del_flag = 'N' AND tb110.bonus_yn = 'N'
+		      GROUP BY tb110.history_idx) a
+		        ON tb100.history_idx = a.history_idx
+		WHERE tb100.del_flag = 'N'
+		order by tb100.history_key desc
+		limit #{limitStartPage},#{limitEndPage}
+	</select>
+	
+	<select id="lottoSearchCount" parameterType="lottoSearchVO" resultType="int">
+		SELECT count(*)
+		FROM tb21_100_lotto_history tb100
+		     LEFT JOIN
+		     (SELECT tb110.history_idx,
+		             group_concat(tb110.ball_number SEPARATOR ',') AS ballList
+		      FROM tb21_110_lotto_ball tb110
+		      WHERE tb110.del_flag = 'N' AND tb110.bonus_yn = 'N'
+		      GROUP BY tb110.history_idx) a
+		        ON tb100.history_idx = a.history_idx
+		WHERE tb100.del_flag = 'N'
+		order by tb100.history_key desc
 	</select>
 </mapper>

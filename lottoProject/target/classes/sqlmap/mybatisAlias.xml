@@ -3,6 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="lotto.spring.project.lottoPercentage.PercentageVO" alias="percentageVo"/>
+		<typeAlias type="lotto.spring.project.lottoSearch.LottoSearchVO" alias="lottoSearchVO"/>
 	</typeAliases>
 </configuration>
