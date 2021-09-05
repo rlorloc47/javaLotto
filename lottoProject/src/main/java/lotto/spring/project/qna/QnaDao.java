@@ -11,7 +11,19 @@ public class QnaDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<QnaVO> qnaSelectList() {
-		return this.sqlSessionTemplate.selectList("qna.qnaSelectList");
+	public List<QnaVO> qnaSelectList(QnaVO qnaVO) {
+		return this.sqlSessionTemplate.selectList("qna.qnaSelectList",qnaVO);
+	}
+
+	public void qnaInsert(QnaVO qnaVO) {
+		this.sqlSessionTemplate.insert("qna.qnaInsert",qnaVO);
+	}
+
+	public int qnaMaxSeq() {
+		return this.sqlSessionTemplate.selectOne("qna.qnaMaxSeq");
+	}
+
+	public int qnaMaxGroupSeq() {
+		return this.sqlSessionTemplate.selectOne("qna.qnaMaxGroupSeq");
 	}
 }

@@ -4,5 +4,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="lotto.spring.project.lottoSearch.LottoSearchVO" alias="lottoSearchVO"/>
+		<typeAlias type="lotto.spring.project.qna.QnaVO" alias="qnaVO"/>
 	</typeAliases>
 </configuration>

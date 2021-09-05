@@ -8,6 +8,6 @@
 <body>
 	<div class="leftMenuCell" onclick="location.href='/lottoSearchList'">복권 조회</div>
 	<div class="leftMenuCell" onclick="location.href='/percentageList'">복권 확률 계산</div>
-	<div class="leftMenuCell">문의게시판</div>
+	<div class="leftMenuCell" onclick="location.href='/qnaList'">문의게시판</div>
 </body>
 </html>
