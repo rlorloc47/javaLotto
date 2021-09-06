@@ -13,24 +13,32 @@
 	google.charts.setOnLoadCallback(drawStuff);
 	
 	function drawStuff() {
-		var jsonData = ('${jsonArray}');
+		var jsonData = $.parseJSON('${jsonArray}');
+		console.log("나는야 사이즈 : "+jsonData.length);
 		
-		var data = new google.visualization.arrayToDataTable($.parseJSON(jsonData));
-
-		var options = {
-			width: 900,
-			legend: { position: 'none' },
-			bars: 'vertical', // Required for Material Bar Charts.
-			axes: {
-			  x: {
-			    0: { side: 'top', label: '복권 차트'} // Top x-axis.
-			  }
-			},
-			bar: { groupWidth: "90%" }
-		};
-		
-		var chart = new google.charts.Bar(document.getElementById('chart_div'));
-		chart.draw(data, options);
+		for (a = 0; a < jsonData.length; a++) {
+			var data = new google.visualization.arrayToDataTable(jsonData[a]);
+	
+			var options = {
+				width: 900,
+				legend: { position: 'none' },
+				bars: 'vertical', // Required for Material Bar Charts.
+				axes: {
+				  x: {
+				    0: { side: 'top', label: '복권 차트'} // Top x-axis.
+				  }
+				},
+				bar: { groupWidth: "90%" }
+			};
+			
+			//21.09.06 DIV 추가하고 해당 DIV에 chart data 널기
+			var divElement = document.createElement("DIV");
+			divElement.className += 'chart_div';
+			$("#chartDivParent").append(divElement);
+			
+			var chart = new google.charts.Bar(divElement);
+			chart.draw(data, options);
+		}
 };
 </script>
 <meta charset="UTF-8">
@@ -80,6 +88,6 @@
 			</tr>
 		</c:forEach>
 	</table> --%>
-	<div id="chart_div"></div>
+	<div id="chartDivParent"></div>
 </body>
 </html>

@@ -25,7 +25,7 @@
 			<when test="orderBy == 'numberDesc'">order by tb110.ball_number desc</when>
 			<when test="orderBy == 'numberDesc'">order by tb110.ball_number desc</when>
 		</choose>
-		limit 0,5
+		limit 0,#{searchNumberCount}
 	</select>
 	
 	<select id="lottoSearchList" parameterType="lottoSearchVO" resultType="lottoSearchVO">

@@ -16,6 +16,7 @@ public class LottoSearchVO {
 	private String searchNumber;
 	private String bonusYN;
 	private String searchKeyword;
+	private int searchNumberCount;
 	
 	//21.09.03 페이지 처리
 	private int limitStartPage;
@@ -25,6 +26,12 @@ public class LottoSearchVO {
 	
 	
 	
+	public int getSearchNumberCount() {
+		return searchNumberCount;
+	}
+	public void setSearchNumberCount(int searchNumberCount) {
+		this.searchNumberCount = searchNumberCount;
+	}
 	public String getPagingStr() {
 		return PagingStr;
 	}

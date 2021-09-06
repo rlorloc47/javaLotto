@@ -26,21 +26,38 @@ public class LottoSearchController {
 	@RequestMapping(value = "/percentageList", method = RequestMethod.GET)
 	public String percentageList(Locale locale,Model model, LottoSearchVO lottoSearchVO) {
 		//21.08.26 문의게시판 리스트 페이지로 이동
+		System.out.println("나는야나는야화와ㅣㅁ뇌ㅏㅘㅣ");
+		if(lottoSearchVO.getSearchNumber()!=null) {
+			String[] SearchNumberList = lottoSearchVO.getSearchNumber().split(",");
+			lottoSearchVO.setSearchNumberCount(SearchNumberList.length);
+		}else {
+			lottoSearchVO.setSearchNumberCount(45);
+		}
 		List<LottoSearchVO> percentageList = null;
 		percentageList = this.lottoSearchService.percentageSelectList(lottoSearchVO);
 		
 		JSONArray jsonArray = new JSONArray();
-		JSONArray jsonFirst = new JSONArray();
-		jsonFirst.add("로또숫자");
-		jsonFirst.add("횟수");
-		jsonArray.add(jsonFirst);
-		
-		for(int a=0;a<percentageList.size();a++) {
+		JSONArray jsonArrayCell = new JSONArray();
+		for(int b=0;b<percentageList.size();b++) {
+			if((b+1)%5==1) {
+				JSONArray jsonFirst = new JSONArray();
+				jsonArrayCell = new JSONArray();
+				jsonFirst.add("로또숫자");
+				jsonFirst.add("횟수");
+				jsonArrayCell.add(jsonFirst);
+			}
+			
 			JSONArray jsonCell = new JSONArray();
-			jsonCell.add(Integer.toString(percentageList.get(a).getBall_number()));
-			jsonCell.add(percentageList.get(a).getBallCount());
-			jsonArray.add(jsonCell);
+			jsonCell.add(Integer.toString(percentageList.get(b).getBall_number()));
+			jsonCell.add(percentageList.get(b).getBallCount());
+			jsonArrayCell.add(jsonCell);
+			
+			if((b+1)%5==0 || (b+1)==percentageList.size()) {
+				System.out.println("나는야 확인용 : "+jsonArrayCell.toString()+"//"+b);
+				jsonArray.add(jsonArrayCell);
+			}
 		}
+		System.out.println("나는야나는야"+jsonArray.toString());
 		
 		model.addAttribute("percentageVO",lottoSearchVO);
 		model.addAttribute("percentageList", percentageList);
