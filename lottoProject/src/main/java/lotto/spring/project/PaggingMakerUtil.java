@@ -78,9 +78,7 @@ public class PaggingMakerUtil {
 		
 		while (curpage <= endpage)
 		{
-			System.out.println("나는야"+curpage+"//"+current);
 			if (curpage == current) {
-				System.out.println("나는야지금 맞아"+current);
 				pagingStr.append("<li><b>");
 				pagingStr.append(current);
 				pagingStr.append("</b></li>");

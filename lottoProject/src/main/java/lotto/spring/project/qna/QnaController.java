@@ -19,7 +19,6 @@ public class QnaController {
 	public String qnaList(Locale locale, Model model, QnaVO qnaVO) {
 		//21.08.26 문의게시판 리스트 페이지로 이동
 		
-		System.out.println("나는야나는야확인용 : "+qnaVO.getGroup_seq());
 		//21.09.05 qna_seq가 없을 경우, 자동으로 max 뽑기
 		if(qnaVO.getGroup_seq() == 0) {
 			int maxGroupSeq = this.qnaService.qnaMaxGroupSeq();
@@ -29,7 +28,6 @@ public class QnaController {
 		List<QnaVO> qnaList = this.qnaService.qnaSelectList(qnaVO);
 		model.addAttribute("qnaList", qnaList);
 		
-		System.out.println("나는야"+qnaVO.getQna_seq());
 		return ".tiles/qna/qnaList";
 	}
 	
@@ -47,7 +45,6 @@ public class QnaController {
 			qnaVO.setGroup_seq(qnaVO.getGroup_seq());
 		}
 		
-		System.out.println("나는야"+qnaVO.getGroup_seq());
 		this.qnaService.qnaInsert(qnaVO);
 		
 		redirectAttr.addAttribute("group_seq", qnaVO.getGroup_seq());

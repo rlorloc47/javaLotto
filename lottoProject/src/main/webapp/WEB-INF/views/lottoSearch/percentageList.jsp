@@ -14,7 +14,6 @@
 	
 	function drawStuff() {
 		var jsonData = $.parseJSON('${jsonArray}');
-		console.log("나는야 사이즈 : "+jsonData.length);
 		
 		for (a = 0; a < jsonData.length; a++) {
 			var data = new google.visualization.arrayToDataTable(jsonData[a]);
