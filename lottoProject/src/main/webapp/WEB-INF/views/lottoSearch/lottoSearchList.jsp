@@ -78,19 +78,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
-	<%-- <div class="paginate">
-	    <a href="javascript:goPage(1)" class="first">&#60;&#60;</a>
-	    <span>
-	        <c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-	            <c:choose>
-	                <c:when test="${i eq param.pageNo}"><a href="javascript:goPage(${i})" class="choice">${i}</a></c:when>
-	                <c:otherwise><a href="javascript:goPage(${i})">${i}</a></c:otherwise>
-	            </c:choose>
-	        </c:forEach>
-	    </span>
-	    <a href="javascript:goPage(${finalPage})" class="last">&#62;&#62;</a>
-	</div> --%>
 	<div class="text_center">
 		<ul class="page">${pagingStr }
 		</ul>

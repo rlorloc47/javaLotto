@@ -9,9 +9,10 @@
 		       group_seq,
 		       write_time,
 		       modify_time,
-		       del_flag
+		       del_flag,
+		       passwd
 		FROM tb21_120_qna tb120
-		WHERE tb120.del_flag = 'N' and tb120.group_seq = #{group_seq}
+		WHERE tb120.del_flag = 'N' and tb120.group_seq = (select a.group_seq from tb21_120_qna a where a.del_flag = 'N' group by a.group_seq order by a.group_seq desc limit #{limitStartPage},#{limitEndPage})
 		order by tb120.sort_order
 	</select>
 	
@@ -24,6 +25,7 @@
 		  ,group_seq
 		  ,write_time
 		  ,del_flag
+		  ,passwd
 		) VALUES (
 		   #{qna_seq}
 		  ,#{content}
@@ -32,6 +34,7 @@
 		  ,#{group_seq}
 		  ,DATE_FORMAT(SYSDATE(), '%Y%m%d%H%i%s')
 		  ,'N'
+		  ,#{passwd}
 		)
 	</insert>
 	
@@ -41,5 +44,42 @@
 	
 	<select id="qnaMaxGroupSeq" resultType="int">
 		select IFNULL(max(a.group_seq),0) from tb21_120_qna a
+	</select>
+	
+	<update id="qnaModify" parameterType="qnaVO">
+		UPDATE tb21_120_qna
+		SET
+		   content = #{content}
+		  ,writer = #{writer}
+		  ,modify_time = DATE_FORMAT(SYSDATE(), '%Y%m%d%H%i%s')
+		  ,passwd = #{passwd}
+		WHERE qna_seq = #{qna_seq}
+	</update>
+	
+	<update id="qnaDel" parameterType="qnaVO">
+		UPDATE tb21_120_qna
+		SET del_flag = 'Y'
+		WHERE qna_Seq = #{qna_seq}
+	</update>
+	
+	<select id="qnaTotalCount" parameterType="qnaVO" resultType="int">
+		SELECT count(*)
+		FROM (SELECT count(*)
+		      FROM tb21_120_qna tb120
+		      WHERE tb120.del_flag = 'N'
+		      GROUP BY tb120.group_seq) a
+	</select>
+	
+	<select id="qnaSelect" parameterType="qnaVO" resultType="qnaVO">
+		SELECT tb120.qna_seq,
+		       tb120.content,
+		       tb120.sort_order,
+		       tb120.writer,
+		       tb120.group_seq,
+		       tb120.write_time,
+		       tb120.modify_time,
+		       tb120.passwd
+		FROM tb21_120_qna tb120
+		WHERE tb120.qna_seq = #{qna_seq}
 	</select>
 </mapper>

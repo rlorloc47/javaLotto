@@ -26,4 +26,20 @@ public class QnaDao {
 	public int qnaMaxGroupSeq() {
 		return this.sqlSessionTemplate.selectOne("qna.qnaMaxGroupSeq");
 	}
+	
+	public void qnaModify(QnaVO qnaVO) {
+		this.sqlSessionTemplate.update("qna.qnaModify",qnaVO);
+	}
+
+	public void qnaDel(QnaVO qnaVO) {
+		this.sqlSessionTemplate.update("qna.qnaDel",qnaVO);
+	}
+
+	public int qnaTotalCount(QnaVO qnaVO) {
+		return this.sqlSessionTemplate.selectOne("qna.qnaTotalCount",qnaVO);
+	}
+
+	public QnaVO qnaSelect(QnaVO qnaVO) {
+		return this.sqlSessionTemplate.selectOne("qna.qnaSelect",qnaVO);
+	}
 }

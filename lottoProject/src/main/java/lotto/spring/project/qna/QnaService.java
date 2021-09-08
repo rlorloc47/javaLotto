@@ -11,4 +11,12 @@ public interface QnaService {
 
 	int qnaMaxGroupSeq();
 
+	void qnaModify(QnaVO qnaVO);
+
+	void qnaDel(QnaVO qnaVO);
+
+	int qnaTotalCount(QnaVO qnaVO);
+
+	QnaVO qnaSelect(QnaVO qnaVO);
+
 }

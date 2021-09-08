@@ -32,4 +32,24 @@ public class QnaServiceImpl implements QnaService {
 		int maxGroupSeq = this.qnaDao.qnaMaxGroupSeq();
 		return maxGroupSeq;
 	}
+
+	@Override
+	public void qnaModify(QnaVO qnaVO) {
+		this.qnaDao.qnaModify(qnaVO);
+	}
+
+	@Override
+	public void qnaDel(QnaVO qnaVO) {
+		this.qnaDao.qnaDel(qnaVO);
+	}
+
+	@Override
+	public int qnaTotalCount(QnaVO qnaVO) {
+		return this.qnaDao.qnaTotalCount(qnaVO);
+	}
+
+	@Override
+	public QnaVO qnaSelect(QnaVO qnaVO) {
+		return this.qnaDao.qnaSelect(qnaVO);
+	}
 }
