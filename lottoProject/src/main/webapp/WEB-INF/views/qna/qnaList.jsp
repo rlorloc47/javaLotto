@@ -83,8 +83,9 @@
 </script>
 </head>
 <body>
-	<form action="/qnaList" class="searchDiv" method="get">
-		<input type="text" name="pageNo" value="${qnaVO.pageNo }">
+	<!-- 21.09.09 페이징 처리를 위해서 필요하지만 검색 기능은 필요하지 않아 막아둠 (나는야) -->
+	<form action="/qnaList" class="searchDiv" method="get" style="display: none;">
+		<input type="hidden" name="pageNo" value="${qnaVO.pageNo }">
 		<div class="clearDiv"></div>
 		<button>검색</button>
 	</form>
@@ -156,6 +157,8 @@
 			<tr>
 				<td>
 					-
+					<!-- 나는야 상대경로 절대경로 -->
+					<!-- <img alt="아래쪽 화살표" src="/WEB-INF/img/arrow_down.png"> -->
 					<input type="hidden" name="board_type" value="A">
 					<input type="hidden" name="sort_order" value="${fn:length(qnaList)+1 }">
 					<input type="hidden" name="qna_seq" value="${qnaVO.qna_seq }">
