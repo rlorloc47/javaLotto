@@ -51,6 +51,19 @@
 		limit #{limitStartPage},#{limitEndPage}
 	</select>
 	
+	<select id="lottoWinList" parameterType="lottoSearchVO" resultType="lottoSearchVO">
+		SELECT tb130.history_idx,
+		       tb130.address_ori,
+		       tb130.auto_type,
+		       (select tb140.code_content from tb21_140_code tb140 where tb140.code = tb130.auto_type and tb140.del_flag = 'N') as code_content,
+		       tb130.win_order,
+		       tb130.company_name
+		FROM tb21_130_lotto_win tb130
+		WHERE     tb130.del_flag = 'N'
+		      AND tb130.history_idx = ${history_idx}
+		ORDER BY tb130.history_idx DESC, tb130.win_order ASC;
+	</select>
+	
 	<select id="lottoSearchCount" parameterType="lottoSearchVO" resultType="int">
 		SELECT count(*)
 		FROM tb21_100_lotto_history tb100

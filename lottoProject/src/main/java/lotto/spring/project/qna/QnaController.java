@@ -42,7 +42,11 @@ public class QnaController {
 		qnaVO.setLimitEndPage(countPerPage);
 		model.addAttribute("pagingStr",(PaggingMakerUtil.indexList(imgs, qnaVO.getPageNo(), countPerPage, numPerPagging, totalCount)));
 		
+		int group_seq = this.qnaService.qnaSelectGroupSeq(qnaVO);
+		qnaVO.setGroup_seq(group_seq);
+		
 		List<QnaVO> qnaList = this.qnaService.qnaSelectList(qnaVO);
+		
 		model.addAttribute("qnaList", qnaList);
 		
 		return ".tiles/qna/qnaList";
@@ -65,6 +69,7 @@ public class QnaController {
 		this.qnaService.qnaInsert(qnaVO);
 		
 		redirectAttr.addAttribute("group_seq", qnaVO.getGroup_seq());
+		System.out.println("나는야"+qnaVO.getGroup_seq());
 		
 		return "redirect:/qnaList";
 	}

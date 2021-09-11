@@ -22,4 +22,8 @@ public class LottoSearchDao {
 	public int lottoSearchCount(LottoSearchVO lottoSearchVO) {
 		return this.sqlSessionTemplate.selectOne("pct.lottoSearchCount",lottoSearchVO);
 	}
+
+	public List<LottoSearchService> lottoWinList(LottoSearchVO lottoSearchVO) {
+		return this.sqlSessionTemplate.selectList("pct.lottoWinList",lottoSearchVO);
+	}
 }

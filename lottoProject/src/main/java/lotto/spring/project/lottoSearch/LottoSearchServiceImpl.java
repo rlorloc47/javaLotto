@@ -27,4 +27,9 @@ public class LottoSearchServiceImpl implements LottoSearchService {
 		int total_count = this.lottoSearchDao.lottoSearchCount(lottoSearchVO);
 		return total_count;
 	}
+
+	@Override
+	public List<LottoSearchService> lottoWinList(LottoSearchVO lottoSearchVO) {
+		return this.lottoSearchDao.lottoWinList(lottoSearchVO);
+	}
 }

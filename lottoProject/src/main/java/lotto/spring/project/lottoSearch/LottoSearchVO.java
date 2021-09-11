@@ -24,8 +24,45 @@ public class LottoSearchVO {
 	private int pageNo;
 	private String PagingStr;
 	
+	//21.09.12 담청지역 리스트
+	private String address_ori;
+	private String auto_type;
+	private int win_order;
+	private String company_name;
+	private String code_content;
 	
 	
+	 
+	public String getCode_content() {
+		return code_content;
+	}
+	public void setCode_content(String code_content) {
+		this.code_content = code_content;
+	}
+	public String getAddress_ori() {
+		return address_ori;
+	}
+	public void setAddress_ori(String address_ori) {
+		this.address_ori = address_ori;
+	}
+	public String getAuto_type() {
+		return auto_type;
+	}
+	public void setAuto_type(String auto_type) {
+		this.auto_type = auto_type;
+	}
+	public int getWin_order() {
+		return win_order;
+	}
+	public void setWin_order(int win_order) {
+		this.win_order = win_order;
+	}
+	public String getCompany_name() {
+		return company_name;
+	}
+	public void setCompany_name(String company_name) {
+		this.company_name = company_name;
+	}
 	public int getSearchNumberCount() {
 		return searchNumberCount;
 	}

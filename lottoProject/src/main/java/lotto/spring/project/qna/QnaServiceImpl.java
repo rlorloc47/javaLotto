@@ -52,4 +52,9 @@ public class QnaServiceImpl implements QnaService {
 	public QnaVO qnaSelect(QnaVO qnaVO) {
 		return this.qnaDao.qnaSelect(qnaVO);
 	}
+
+	@Override
+	public int qnaSelectGroupSeq(QnaVO qnaVO) {
+		return this.qnaDao.qnaSelectGroupSeq(qnaVO);
+	}
 }

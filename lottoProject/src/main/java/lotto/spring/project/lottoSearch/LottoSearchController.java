@@ -12,8 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lotto.spring.project.PaggingMakerUtil;
+import lotto.spring.project.qna.QnaVO;
 
 @Controller
 public class LottoSearchController {
@@ -83,12 +85,21 @@ public class LottoSearchController {
 		lottoSearchVO.setLimitEndPage(countPerPage);
 		model.addAttribute("pagingStr",(PaggingMakerUtil.indexList(imgs, lottoSearchVO.getPageNo(), countPerPage, numPerPagging, totalCount)));
         
-		List<LottoSearchVO> lottoSearchList = null;
-		lottoSearchList = this.lottoSearchService.lottoSearchList(lottoSearchVO);
-		
-		model.addAttribute("lottoSearchList", lottoSearchList);
+		List<LottoSearchVO> lottoSearchList = this.lottoSearchService.lottoSearchList(lottoSearchVO);
+		model.addAttribute("lottoSearchList", lottoSearchList);	//21.09.12 회차별 복권 담청번호
 		
 		return ".tiles/lottoSearch/lottoSearchList";
+	}
+	
+	@RequestMapping(value = "/showWinLottoAjax", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> showWinLottoAjax(Model model, LottoSearchVO lottoSearchVO){
+		//21.09.12 담청지역리스트 표시
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<LottoSearchService> lottoWinList = this.lottoSearchService.lottoWinList(lottoSearchVO);
+		
+		resultMap.put("lottoWinList", lottoWinList);
+		
+		return resultMap;
 	}
 
 	public int getPageSize() {

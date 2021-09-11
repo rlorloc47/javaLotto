@@ -11,6 +11,9 @@
 	.modifyTr{
 		display: none;
 	}
+	textarea[name=content]{
+		width: 98%;
+	}
 </style>
 <script type="text/javascript">
 	//21.09.08 수정 버튼 클릭 시, 수정 열 보이게 변경
@@ -108,7 +111,7 @@
 			<tr id="origin_${a.qna_seq }">
 				<td>
 					<c:if test="${a.sort_order eq '1' }">${a.qna_seq }</c:if>
-					<c:if test="${a.sort_order ne '1' }">-</c:if>
+					<c:if test="${a.sort_order ne '1' }"><img alt="아래쪽 화살표" src="/imgSrc/arrow_down.png" class="arrow_down"></c:if>
 				</td>
 				<td>${a.content }</td>
 				<td>${a.writer }</td>
@@ -121,7 +124,6 @@
 					
 					<c:if test="${a.passwd ne null }">o</c:if>
 					<c:if test="${a.passwd eq null }">x</c:if>
-					
 					<input type="hidden" name="group_seq" id="group_seq_${a.qna_seq}" value="${a.group_seq }">
 					<input type="text" name="passwd" id="passwd_${a.qna_seq }" placeholder="비밀번호입력">
 				</td>
@@ -156,9 +158,7 @@
 		<form action="/qnaInsert" method="get">
 			<tr>
 				<td>
-					-
-					<!-- 나는야 상대경로 절대경로 -->
-					<!-- <img alt="아래쪽 화살표" src="/WEB-INF/img/arrow_down.png"> -->
+					<img alt="아래쪽 화살표" src="/imgSrc/arrow_down.png" class="arrow_down">
 					<input type="hidden" name="board_type" value="A">
 					<input type="hidden" name="sort_order" value="${fn:length(qnaList)+1 }">
 					<input type="hidden" name="qna_seq" value="${qnaVO.qna_seq }">

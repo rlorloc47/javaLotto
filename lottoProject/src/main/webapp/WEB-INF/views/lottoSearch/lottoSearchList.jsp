@@ -32,6 +32,36 @@
 	background-color: #6bce9e;
 }
 </style>
+
+<script type="text/javascript">
+//21.09.12 담청지역 표시
+function showWinLottoAjax(history_idx) {
+	var params = {
+		'history_idx' : history_idx
+	}
+	//ajax 통신
+	$.ajax({
+		type : "GET",
+		url : "/showWinLottoAjax",
+		data : params,
+		success : function(res) {
+			$(".removeTr").remove();	//이전회차 삭제 처리
+			$(".hideWinTr").hide();	//"상단에 원하는 회차~" 문구 숨기기
+			
+			var tbody = $(".winTable");
+			$.each(res.lottoWinList,	function(idx, val) {
+				tbody.append($('<tr class=removeTr>').append($('<td>',	{text : (idx+1)}))
+						              .append($('<td>',	{text : val.address_ori}))
+									  .append($('<td>',	{text : val.code_content}))
+									  .append($('<td>',	{text : val.win_order}))
+									  .append($('<td>',	{text : val.company_name})));
+			});
+		},error : function() {
+			alert("예상치 못한 오류가 발생하였으므로 추후에 다시 시도하여 주시기 바랍니다.");
+		}
+	});
+}
+</script>
 </head>
 <body>
 	<form action="/lottoSearchList" class="searchDiv" method="get">
@@ -45,6 +75,7 @@
 			<td>회차</td>
 			<td>숫자</td>
 			<td>보너스숫자</td>
+			<td>담청지역 확인버튼</td>
 		</tr>
 		<c:forEach items="${lottoSearchList }" var="a">
 			<tr>
@@ -75,6 +106,9 @@
 						">${a.bonus_number }
 					</div>
 				</td>
+				<td>
+					<input type="radio" name="winLotto" onclick="showWinLottoAjax(${a.history_idx})">
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -82,5 +116,25 @@
 		<ul class="page">${pagingStr }
 		</ul>
 	</div>
+	
+	<table class="basicTable winTable">
+		<colgroup>
+			<col width="5%">
+			<col>
+			<col width="10%">
+			<col width="10%">
+			<col width="25%">
+		</colgroup>
+		<tr>
+			<td>번호</td>
+			<td>주소</td>
+			<td>자동여부</td>
+			<td>당첨등수</td>
+			<td>상호명</td>
+		</tr>
+		<tr class="hideWinTr">
+			<td colspan="5">상단에 원하는 회차를 선택하여 주시기 바랍니다</td>
+		</tr>
+	</table>
 </body>
 </html>

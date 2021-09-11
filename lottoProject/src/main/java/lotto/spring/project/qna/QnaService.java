@@ -19,4 +19,6 @@ public interface QnaService {
 
 	QnaVO qnaSelect(QnaVO qnaVO);
 
+	int qnaSelectGroupSeq(QnaVO qnaVO);
+
 }

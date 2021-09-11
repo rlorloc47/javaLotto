@@ -42,4 +42,8 @@ public class QnaDao {
 	public QnaVO qnaSelect(QnaVO qnaVO) {
 		return this.sqlSessionTemplate.selectOne("qna.qnaSelect",qnaVO);
 	}
+
+	public int qnaSelectGroupSeq(QnaVO qnaVO) {
+		return this.sqlSessionTemplate.selectOne("qna.qnaSelectGroupSeq",qnaVO);
+	}
 }

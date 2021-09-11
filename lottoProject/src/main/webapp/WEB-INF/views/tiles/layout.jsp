@@ -67,6 +67,12 @@
     padding: 0 0;
     box-sizing: border-box;
 }
+
+/* 21.09.12 화살표 */
+.arrow_down .arrow_up{
+	width: 10px;
+	height: 10px;
+}
 </style>
 <script type="text/javascript">
 	function movePage(pageNo) {

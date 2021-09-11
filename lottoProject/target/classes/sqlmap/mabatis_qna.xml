@@ -12,8 +12,12 @@
 		       del_flag,
 		       passwd
 		FROM tb21_120_qna tb120
-		WHERE tb120.del_flag = 'N' and tb120.group_seq = (select a.group_seq from tb21_120_qna a where a.del_flag = 'N' group by a.group_seq order by a.group_seq desc limit #{limitStartPage},#{limitEndPage})
+		WHERE tb120.del_flag = 'N' and tb120.group_seq = ${group_seq}
 		order by tb120.sort_order
+	</select>
+	
+	<select id="qnaSelectGroupSeq" parameterType="qnaVO" resultType="int">
+		select a.group_seq from tb21_120_qna a where a.del_flag = 'N' group by a.group_seq order by a.group_seq desc limit #{limitStartPage},#{limitEndPage}
 	</select>
 	
 	<insert id="qnaInsert" parameterType="qnaVO">
