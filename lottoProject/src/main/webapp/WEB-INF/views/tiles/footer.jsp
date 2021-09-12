@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>나는야 푸터</div>
+	<div class="footer">
+		나는야 푸터
+	</div>
 </body>
 </html>

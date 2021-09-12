@@ -13,6 +13,17 @@
 	width: 20%;
 	min-width: 200px;
 	float: left;
+	height: 100%;
+	background-color: #e8e8e8;
+}
+#content{
+	position: absolute;
+	left: 0;
+	top: 10%;
+	height: 80%;
+}
+.page-contentinbe{
+	height: 100%;
 }
 .bodyDiv{
 	width: 80%;
@@ -73,6 +84,28 @@
 	width: 10px;
 	height: 10px;
 }
+
+/* 21.09.12 레이아웃 관련 */
+.footer{
+	width: 100%;
+	height: 10%;
+	background-color: gray;
+	position:absolute;
+	bottom:0;
+	left: 0;
+}
+.wholeDIv{
+	width: 100%;
+	height: 100%;
+}
+#headerDiv{
+	height: 10%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: gray;
+}
 </style>
 <script type="text/javascript">
 	function movePage(pageNo) {
@@ -82,18 +115,20 @@
 </script>
 </head>
 <body>
-    <%-- <tiles:insertAttribute name="header" /> --%>
-    <div id="content">
-        <div class="page-contentinbe">
-        	<div class="leftMenuDiv">
-        		<tiles:insertAttribute name="left" />
-        	</div>
-        	<div class="bodyDiv">
-        		<tiles:insertAttribute name="body" />
-        	</div>
-        	<div class="clearDiv"></div>
-        </div>
+	<div class="wholeDIv">
+		<tiles:insertAttribute name="header" />
+	    <div id="content">
+	        <div class="page-contentinbe">
+	        	<div class="leftMenuDiv">
+					<tiles:insertAttribute name="left" />
+				</div>
+	        	<div class="bodyDiv">
+	        		<tiles:insertAttribute name="body" />
+	        	</div>
+	        	<div class="clearDiv"></div>
+	        </div>
+	    </div>
+	    <tiles:insertAttribute name="footer" />
     </div>
-    <tiles:insertAttribute name="footer" />
 </body>
 </html>

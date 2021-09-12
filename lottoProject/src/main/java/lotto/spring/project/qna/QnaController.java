@@ -69,7 +69,6 @@ public class QnaController {
 		this.qnaService.qnaInsert(qnaVO);
 		
 		redirectAttr.addAttribute("group_seq", qnaVO.getGroup_seq());
-		System.out.println("나는야"+qnaVO.getGroup_seq());
 		
 		return "redirect:/qnaList";
 	}
