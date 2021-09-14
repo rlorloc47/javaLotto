@@ -21,6 +21,7 @@
 	left: 0;
 	top: 10%;
 	height: 80%;
+	width: 100%;
 }
 .page-contentinbe{
 	height: 100%;
