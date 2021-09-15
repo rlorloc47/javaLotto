@@ -90,10 +90,13 @@
 .footer{
 	width: 100%;
 	height: 10%;
-	background-color: gray;
+	background-color: #cac6c6;
 	position:absolute;
 	bottom:0;
 	left: 0;
+	margin: 0;
+	text-align: right;
+	color: gray;
 }
 .wholeDIv{
 	width: 100%;
@@ -105,7 +108,9 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: gray;
+	background-color: #cac6c6;
+	margin: 0px;
+	color: gray;
 }
 </style>
 <script type="text/javascript">

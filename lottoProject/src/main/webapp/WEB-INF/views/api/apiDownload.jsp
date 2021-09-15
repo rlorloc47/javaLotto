@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<a href="/apiAjax">API 페이지로 이동</a>
 </body>
 </html>

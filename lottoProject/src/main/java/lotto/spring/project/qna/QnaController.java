@@ -24,6 +24,8 @@ public class QnaController {
 	@RequestMapping(value = "/qnaList", method = RequestMethod.GET)
 	public String qnaList(Locale locale, Model model, QnaVO qnaVO) {
 		//21.08.26 문의게시판 리스트 페이지로 이동
+		model.addAttribute("leftMenu", "qnaList");
+		
 		int totalCount = this.qnaService.qnaTotalCount(qnaVO);
 		
 		int countPerPage = 1;

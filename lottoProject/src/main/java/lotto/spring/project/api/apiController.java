@@ -27,6 +27,7 @@ public class apiController {
 	@RequestMapping(value = "/apiDownload", method = RequestMethod.GET)
 	public String apiList(Locale locale, Model model) {
 		//21.09.14 api 다운로드 페이지로 이동
+		model.addAttribute("leftMenu", "apiDownload");
 		return ".tiles/api/apiDownload";
 	}
 	

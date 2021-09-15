@@ -22,12 +22,11 @@ public class LottoSearchController {
 	@Autowired
 	LottoSearchService lottoSearchService;
 	
-	//21.09.03 페이지 처리
-	private int pageSize; // 게시 글 수
-	
 	@RequestMapping(value = "/percentageList", method = RequestMethod.GET)
 	public String percentageList(Locale locale,Model model, LottoSearchVO lottoSearchVO) {
 		//21.08.26 문의게시판 리스트 페이지로 이동
+		model.addAttribute("leftMenu", "percentageList");
+		
 		if(lottoSearchVO.getSearchNumber()!=null) {
 			String[] SearchNumberList = lottoSearchVO.getSearchNumber().split(",");
 			lottoSearchVO.setSearchNumberCount(SearchNumberList.length);
@@ -66,6 +65,7 @@ public class LottoSearchController {
 	
 	@RequestMapping(value = "/lottoSearchList", method = RequestMethod.GET)
 	public String searchLottoList(Locale locale,Model model, LottoSearchVO lottoSearchVO) {
+		model.addAttribute("leftMenu", "lottoSearchList");
 		//21.09.03 복권 조회 페이지로 이동
 		int totalCount = this.lottoSearchService.lottoSearchCount(lottoSearchVO);
 		
@@ -101,14 +101,8 @@ public class LottoSearchController {
 		
 		return resultMap;
 	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
+	
+	
 	
 	
 }

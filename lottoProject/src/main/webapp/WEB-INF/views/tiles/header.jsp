@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="headerDiv">나는야 헤더 나는야</div>
+	<h1 id="headerDiv">
+	</h1>
 </body>
 </html>
