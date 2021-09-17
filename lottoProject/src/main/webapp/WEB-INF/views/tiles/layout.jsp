@@ -15,6 +15,7 @@
 	float: left;
 	height: 100%;
 	background-color: #e8e8e8;
+	position: fixed;
 }
 #content{
 	position: absolute;
@@ -91,7 +92,7 @@
 	width: 100%;
 	height: 10%;
 	background-color: #cac6c6;
-	position:absolute;
+	position: fixed;
 	bottom:0;
 	left: 0;
 	margin: 0;
