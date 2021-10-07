@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.JsonObject;
 
 import lotto.spring.project.lottoSearch.LottoSearchService;
 import lotto.spring.project.lottoSearch.LottoSearchVO;
@@ -62,5 +65,16 @@ public class apiController {
 		
 		return resultMap;
 	}
+	
+    @RequestMapping("/apiRest")
+    public String mainIndexPage() {
+        
+        JsonObject param = new JsonObject();
+        // POST 방식으로 호출.(GET, POST, PUT, DELETE 다 가능 합니다.)
+        HttpUtil.callApi(param, "POST");
+        
+        return ".tiles/api/apiDownload";
+    }
+
 	
 }
