@@ -66,14 +66,15 @@ public class apiController {
 		return resultMap;
 	}
 	
-    @RequestMapping("/apiRest")
-    public String mainIndexPage() {
-        
+	@RequestMapping(value = "/apiRest", method = RequestMethod.GET)
+	public @ResponseBody String apiRest() {
+        System.out.println("나는야 시작");
         JsonObject param = new JsonObject();
         // POST 방식으로 호출.(GET, POST, PUT, DELETE 다 가능 합니다.)
-        HttpUtil.callApi(param, "POST");
-        
-        return ".tiles/api/apiDownload";
+        //HttpUtil.callApi(param, "POST");
+        String response = HttpUtil.callApi(param, "GET");
+        System.out.println("나는야 끝");
+        return response;
     }
 
 	

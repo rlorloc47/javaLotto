@@ -8,6 +8,7 @@
 </head>
 <body>
 	<a href="/apiAjax">API 예제</a>
+	<a href="/apiRest">API 예제2</a> 
 	<h5>전송값 리스트</h5>
 	<table class="basicTable">
 		<tr>
